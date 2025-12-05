@@ -1,4 +1,4 @@
-package co.com.quind.domain.model.packages;
+package co.com.quind.domain.packages.model;
 
 import java.time.LocalDateTime;
 

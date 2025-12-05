@@ -1,30 +1,36 @@
-package co.com.quind.domain.model.packages;
+package co.com.quind.domain.packages.model;
 
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
-@Builder
-public class Package {
+@ToString
+@Getter
+@Builder(toBuilder = true, access = AccessLevel.MODULE)
+public class PackageDomain {
     private final String trackingId;
     private final RecipientInfo recipientInfo;
     private final Dimensions dimensions;
     private final Double weight;
     private Status status;
-    private final List<LocationHistory> history;
+    private final List<LocationHistory> locationHistories;
 
     public void addLocation(LocationHistory location) {
         if (location == null) throw new IllegalArgumentException("La ubicación es requerido");
-        if (!history.isEmpty()) {
-            LocationHistory last = history.getLast();
+        if (!locationHistories.isEmpty()) {
+            LocationHistory last = locationHistories.getLast();
             if (location.date().isBefore(last.date())) {
                 throw new IllegalArgumentException("La ubicación debe ser cronológico");
             }
         }
-        history.add(location);
+        locationHistories.add(location);
     }
 
     public void changeStatus(Status newStatus) {
         status = newStatus;
     }
 }
+

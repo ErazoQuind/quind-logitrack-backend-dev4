@@ -1,9 +1,34 @@
 package co.com.quind.application.config;
 
+import co.com.quind.domain.packages.ports.CreatePackageRepositoryPort;
+import co.com.quind.domain.packages.ports.DeletePackageByIdRepositoryPort;
+import co.com.quind.domain.packages.ports.GetPackageRepositoryPort;
+import co.com.quind.domain.packages.ports.UpdatePackageRepositoryPort;
+import co.com.quind.usecase.packages.*;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class UseCasesConfiguration {
-    //todo: Add use case beans if needed in the future
+    @Bean
+    public CreatePackageUseCase createPackageUseCase(CreatePackageRepositoryPort createPackageRepository) {
+        return new CreatePackageUseCase(createPackageRepository);
+    }
+    @Bean
+    public UpdatePackageUseCase updatePackageUseCase(UpdatePackageRepositoryPort updatePackageRepository) {
+        return new UpdatePackageUseCase(updatePackageRepository);
+    }
+    @Bean
+    public GetPackageByIdUseCase getPackageByIdUseCase(GetPackageRepositoryPort getPackageRepository) {
+        return new GetPackageByIdUseCase(getPackageRepository);
+    }
+    @Bean
+    public ChangeStatusUseCase changeStatusUseCase(UpdatePackageRepositoryPort updatePackageRepository) {
+        return new ChangeStatusUseCase(updatePackageRepository);
+    }
+    @Bean
+    public DeletePackageUseCase deletePackageUseCase(DeletePackageByIdRepositoryPort deletePackageByIdRepository) {
+        return new DeletePackageUseCase(deletePackageByIdRepository);
+    }
 
 }
