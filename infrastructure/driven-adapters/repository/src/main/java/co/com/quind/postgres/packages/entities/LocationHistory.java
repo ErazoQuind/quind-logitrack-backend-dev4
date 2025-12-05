@@ -3,14 +3,14 @@ package co.com.quind.postgres.packages.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "location_history")
-@RequiredArgsConstructor
 @Data
+@NoArgsConstructor
 public class LocationHistory {
 
     @Id

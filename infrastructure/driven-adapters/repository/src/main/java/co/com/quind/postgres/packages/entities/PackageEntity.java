@@ -10,7 +10,6 @@ import java.util.List;
 @Table(name = "packages")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class PackageEntity {
     @Id
     @Column(name = "tracking_id", nullable = false, unique = true)
