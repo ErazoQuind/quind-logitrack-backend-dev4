@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: 'postgres:17'
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=quind_test
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_USER=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - quind_logitrack_db_data:/var/lib/postgresql/data
+    mem_limit: 512m
+    mem_reservation: 256m
+
+volumes:
+  quind_logitrack_db_data: {}
