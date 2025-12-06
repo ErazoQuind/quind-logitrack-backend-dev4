@@ -11,7 +11,8 @@ import java.util.List;
 
 @ToString
 @Getter
-@Builder(toBuilder = true, access = AccessLevel.MODULE)
+//TODO: pendiente por buscar otra alternativa para los mapper, para poder usar @Builder(access = AccessLevel.MODULE)
+@Builder(toBuilder = true)
 public class PackageDomain {
     private final String trackingId;
     private final RecipientInfo recipientInfo;

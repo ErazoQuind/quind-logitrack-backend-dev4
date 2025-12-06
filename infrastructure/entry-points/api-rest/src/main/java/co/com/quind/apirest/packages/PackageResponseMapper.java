@@ -18,7 +18,8 @@ public interface PackageResponseMapper {
     @Mapping(target = "height", source = "dimensions.height")
     @Mapping(target = "width", source = "dimensions.width")
     @Mapping(target = "depth", source = "dimensions.depth")
-    @Mapping(target = "status", source = "status.name") // Convierte el Enum a String
-    @Mapping(target = "locationHistoryResponseDTOList", source = "locationHistories") // Usa el mapper de historial
+    //todo: revisar este mapeo de status no me gusta
+    @Mapping(target = "status", expression = "java(domain.getStatus().name())")
+    @Mapping(target = "locationHistoryResponseDTOList", source = "locationHistories")
     PackageResponseDTO toDto(PackageDomain domain);
 }
