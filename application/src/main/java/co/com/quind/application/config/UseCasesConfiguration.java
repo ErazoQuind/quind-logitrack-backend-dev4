@@ -15,16 +15,16 @@ public class UseCasesConfiguration {
         return new CreatePackageUseCase(createPackageRepository);
     }
     @Bean
-    public UpdatePackageUseCase updatePackageUseCase(UpdatePackageRepositoryPort updatePackageRepository) {
-        return new UpdatePackageUseCase(updatePackageRepository);
+    public UpdatePackageUseCase updatePackageUseCase(UpdatePackageRepositoryPort updatePackageRepository, GetPackageRepositoryPort getPackageRepository) {
+        return new UpdatePackageUseCase(updatePackageRepository, getPackageRepository);
     }
     @Bean
     public GetPackageByIdUseCase getPackageByIdUseCase(GetPackageRepositoryPort getPackageRepository) {
         return new GetPackageByIdUseCase(getPackageRepository);
     }
     @Bean
-    public ChangeStatusUseCase changeStatusUseCase(UpdatePackageRepositoryPort updatePackageRepository) {
-        return new ChangeStatusUseCase(updatePackageRepository);
+    public ChangeStatusUseCase changeStatusUseCase(UpdatePackageRepositoryPort updatePackageRepository, GetPackageRepositoryPort getPackageRepository) {
+        return new ChangeStatusUseCase(updatePackageRepository, getPackageRepository);
     }
     @Bean
     public DeletePackageUseCase deletePackageUseCase(DeletePackageByIdRepositoryPort deletePackageByIdRepository) {

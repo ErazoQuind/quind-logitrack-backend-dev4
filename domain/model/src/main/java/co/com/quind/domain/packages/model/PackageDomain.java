@@ -1,10 +1,12 @@
 package co.com.quind.domain.packages.model;
 
+import co.com.quind.domain.common.BusinessRuleException;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @ToString
@@ -18,19 +20,34 @@ public class PackageDomain {
     private Status status;
     private final List<LocationHistory> locationHistories;
 
-    public void addLocation(LocationHistory location) {
-        if (location == null) throw new IllegalArgumentException("La ubicación es requerido");
+    public PackageDomain addLocation(LocationHistory location) {
+        if (location == null) {
+            throw new BusinessRuleException("La ubicación es requerida.");
+        }
+
         if (!locationHistories.isEmpty()) {
             LocationHistory last = locationHistories.getLast();
             if (location.date().isBefore(last.date())) {
-                throw new IllegalArgumentException("La ubicación debe ser cronológico");
+                throw new BusinessRuleException("La ubicación debe ser cronológica.");
             }
         }
-        locationHistories.add(location);
+
+        List<LocationHistory> newHistory = new ArrayList<>(this.locationHistories);
+        newHistory.add(location);
+
+        return this.toBuilder()
+                .locationHistories(newHistory)
+                .build();
     }
 
-    public void changeStatus(Status newStatus) {
-        status = newStatus;
+    public PackageDomain changeStatus(Status newStatus) {
+        if (newStatus == null) {
+            throw new BusinessRuleException("El estado no puede ser nulo.");
+        }
+
+        return this.toBuilder()
+                .status(newStatus)
+                .build();
     }
 }
 

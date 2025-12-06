@@ -10,8 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CreatePackageUseCase {
     private final CreatePackageRepositoryPort createPackageRepository;
 
-    public void createPackage(PackageDomain packageDomain) {
-        createPackageRepository.createPackage(packageDomain);
+    public PackageDomain createPackage(PackageDomain packageDomain) {
         log.info("Package created with tracking ID: {}", packageDomain.getTrackingId());
+        return createPackageRepository.createPackage(packageDomain);
     }
 }
